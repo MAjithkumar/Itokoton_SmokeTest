@@ -1,4 +1,4 @@
-package com.itokoton.util;
+package com.itokoton.util.Database;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,9 +20,6 @@ public class DatabaseConnection {
 			FileInputStream in = new FileInputStream(dbPropfile);
 			props.load(in);
 			in.close();
-
-//		String connectionUrltest = "jdbc:sqlserver://regtesting.itokotonnxtgen.mahathiinfotech.com;databaseName=automation.itokotonnxtgen.mahathiinfotech.com;user=Testing;password=T#s6ing#123";
-
 			String dbUrl = props.getProperty("DB_URL");
 			String dbUser = props.getProperty("DB_USERNAME");
 			String dbPass = props.getProperty("DB_PASSWORD");
@@ -44,11 +41,11 @@ public class DatabaseConnection {
 		return null;
 	}
 
-	public static ArrayList<String> getRoute(String id) throws IOException {
+	public static ArrayList<String> getVendorRoute(String id) throws IOException {
 		Connection con = DatabaseConnection.getConnection();
 
 		Statement stmt;
-		ArrayList<String> approverlist = new ArrayList<String>();
+		ArrayList<String> vendorapproverlist = new ArrayList<String>();
 		try {
 			stmt = con.createStatement();
 
@@ -58,12 +55,11 @@ public class DatabaseConnection {
 
 			while (rs.next()) {
 				System.out.println(rs.getString("ApproverName"));
-				approverlist.add(rs.getString("ApproverName"));
+				vendorapproverlist.add(rs.getString("ApproverName"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return approverlist;
-
+		return vendorapproverlist;
 	}
 }

@@ -1,4 +1,4 @@
-package com.itokoton.util;
+package com.itokoton.util.ExcelUtils;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
