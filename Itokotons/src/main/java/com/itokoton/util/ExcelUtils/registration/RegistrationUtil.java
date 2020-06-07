@@ -18,6 +18,8 @@ public class RegistrationUtil {
 			e.printStackTrace();
 		}
 		for (int rowNum = 2; rowNum <= reader.getRowCount("VendorInputData"); rowNum++) {
+			String Username = Xls_Reader.getCellData("VendorInputData", "Username", rowNum);
+			String Password = Xls_Reader.getCellData("VendorInputData", "Password", rowNum);
 			String CompanyFirstName = Xls_Reader.getCellData("VendorInputData", "CompanyFirstName", rowNum);
 			String CompanyLastName = Xls_Reader.getCellData("VendorInputData", "CompanyLastName", rowNum);
 			String Address1 = Xls_Reader.getCellData("VendorInputData", "Address1", rowNum);
@@ -64,6 +66,8 @@ public class RegistrationUtil {
 			String Controlinternalnotes = Xls_Reader.getCellData("VendorInputData", "Controlinternalnotes", rowNum);
 
 			vendorDetail = new RegistrationDTO();
+			vendorDetail.setUsername(Username);
+			vendorDetail.setPassword(Password);
 			vendorDetail.setCompanyFirstName(CompanyFirstName);
 			vendorDetail.setCompanyLastName(CompanyLastName);
 			vendorDetail.setAddress1(Address1);

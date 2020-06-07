@@ -1,6 +1,8 @@
 package com.itokoton.util.DTO.registration;
 
 public class RegistrationDTO {
+	public String Username;
+	public String Password;
 	public String CompanyFirstName;
 	public String CompanyLastName;
 	public String Address1;
@@ -48,6 +50,22 @@ public class RegistrationDTO {
 
 	public RegistrationDTO() {
 
+	}
+
+	public String getUsername() {
+		return Username;
+	}
+
+	public void setUsername(String username) {
+		Username = username;
+	}
+
+	public String getPassword() {
+		return Password;
+	}
+
+	public void setPassword(String password) {
+		Password = password;
 	}
 
 	public String getCompanyFirstName() {

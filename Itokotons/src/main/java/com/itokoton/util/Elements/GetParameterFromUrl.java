@@ -7,7 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class GetParameterFromUrl {
+import com.itokoton.basepage.BasePage;
+
+public class GetParameterFromUrl extends BasePage {
 
 	public String getValuesFromUrl(String url, String queryParam) {
 		try {

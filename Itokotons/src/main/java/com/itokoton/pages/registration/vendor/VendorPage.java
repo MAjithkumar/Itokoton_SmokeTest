@@ -8,7 +8,14 @@ import com.itokoton.basepage.BasePage;
 import com.itokoton.util.Elements.ElementUtil;
 
 public class VendorPage extends BasePage {
-	ElementUtil eu = new ElementUtil(getDriver());
+
+	WebDriver driver;
+	ElementUtil eu;
+
+	public VendorPage(WebDriver driver) {
+		this.driver = driver;
+		eu = new ElementUtil(driver);
+	}
 
 //	Locators
 	@FindBy(className = "logoimage")

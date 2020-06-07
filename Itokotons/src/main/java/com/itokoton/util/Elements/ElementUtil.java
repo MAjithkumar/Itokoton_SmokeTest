@@ -11,10 +11,12 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ElementUtil {
+import com.itokoton.basepage.BasePage;
+
+public class ElementUtil extends BasePage {
 
 	WebDriver driver;
-	static WebDriverWait wait;
+	WebDriverWait wait;
 	WebElement element;
 
 	public ElementUtil(WebDriver driver) {
