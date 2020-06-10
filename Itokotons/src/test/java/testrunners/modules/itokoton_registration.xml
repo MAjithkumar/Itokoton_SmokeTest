@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-	<test name="Itokoton">
+	<listeners>
+		<listener
+			class-name="com.itokoton.listeners.ExtentReportListener" />
+	</listeners>
+
+	<test name="Itokoton-Registration">
 		<classes>
 			<class name="com.itokoton.registration.VendorPageTest" />
 		</classes>
-	</test> <!-- Test -->
-</suite> <!-- Suite -->
+	</test>
+</suite>

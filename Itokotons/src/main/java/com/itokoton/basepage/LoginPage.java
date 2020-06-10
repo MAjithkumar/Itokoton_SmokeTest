@@ -6,29 +6,12 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Properties;
 
-import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.safari.SafariDriver;
-import org.openqa.selenium.support.FindBy;
 
 import com.itokoton.util.Elements.ElementUtil;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class LoginPage extends BasePage {
 	static String currentUName, currentPassword;
@@ -42,19 +25,13 @@ public class LoginPage extends BasePage {
 	}
 
 //	Locators 
-	@FindBy(xpath = "//i[@class='fa fa-caret-down']")
-	static By LOGOUT_DOWNARROW_ICON;
-	@FindBy(xpath = "//a[starts-with(.,'Sign-in As Different User')]")
-	static By LOGOUT_SIGNIN_DIFF_USER;
-	@FindBy(xpath = "//table[@id='user-profile-dd']/descendant::tr/descendant::td/descendant::label")
-	static By LOGGEDIN_USER;
+	By LOGOUT_DOWNARROW_ICON = By.xpath("//i[@class='fa fa-caret-down']");
+	By LOGOUT_SIGNIN_DIFF_USER = By.xpath("//a[starts-with(.,'Sign-in As Different User')]");
+	By LOGGEDIN_USER = By.xpath("//table[@id='user-profile-dd']/descendant::tr/descendant::td/descendant::label");
+	By header = By.cssSelector("h1.private-page__title");
+	By HOME_PAGE_MENU = By.linkText("My View");
 
 	public void Login(String userName, String userPassword) throws IOException, InterruptedException, AWTException {
-		eu.inVisibilityOfSpinnerIcon();
-		eu.SLEEP_4S();
-		currentUName = userName;
-		currentPassword = userPassword;
-		eu.inVisibilityOfSpinnerIcon();
 		StringSelection loginname = new StringSelection(userName);
 		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 		clipboard.setContents(loginname, loginname);
@@ -76,6 +53,8 @@ public class LoginPage extends BasePage {
 		robot1.keyPress(KeyEvent.VK_TAB);
 		robot1.keyPress(KeyEvent.VK_ENTER);
 		eu.SLEEP_3S();
+		currentUName = userName;
+		currentPassword = userPassword;
 		VerifyLoginUser();
 	}
 
@@ -107,9 +86,9 @@ public class LoginPage extends BasePage {
 		}
 	}
 
-	public void VerifyLoginUser() {
+	public void VerifyLoginUser() throws InterruptedException {
+		eu.SLEEP_6S();
 		String user = eu.getText(LOGGEDIN_USER);
-		System.out.println("The logged in user name is -- " + user);
 		if (!user.equals(currentUName)) {
 			try {
 				relogin = true;
@@ -120,5 +99,14 @@ public class LoginPage extends BasePage {
 		} else {
 			relogin = false;
 		}
+		eu.SLEEP_6S();
+	}
+
+	public boolean verifyHomePageHeader() {
+		return eu.IsDisplayed(HOME_PAGE_MENU);
+	}
+
+	public String getHomePageHeader() {
+		return eu.getText(HOME_PAGE_MENU);
 	}
 }

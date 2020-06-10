@@ -25,9 +25,19 @@ public class ElementUtil extends BasePage {
 	}
 
 //	Locators
-//	@FindBy(how = How.ID, using = "spin_modal_overlay") static WebElement SPINNER_ICON; 
-	@FindBy(id = "spin_modal_overlay")
-	static By SPINNER_ICON;
+	By SPINNER_ICON = By.id("spin_modal_overlay");
+
+	public WebElement getElement(By locator) {
+		waitForElementPresent(locator);
+		WebElement element = null;
+		try {
+			element = driver.findElement(locator);
+		} catch (Exception e) {
+			System.out.println("some exception got occurred while creating the webelement : " + locator);
+			System.out.println(e.getMessage());
+		}
+		return element;
+	}
 
 	public void visibilityOfElementWait(By locator) {
 		try {
@@ -59,22 +69,41 @@ public class ElementUtil extends BasePage {
 
 	public void inVisibilityOfSpinnerIcon() {
 		try {
-			wait.until(ExpectedConditions.invisibilityOfElementLocated(ElementUtil.SPINNER_ICON));
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(SPINNER_ICON));
 		} catch (TimeoutException e) {
 			throw new NoSuchElementException(e.toString());
 		}
 	}
 
-	private WebElement getElement(By locator) {
-		return null;
+	public void click(By locator) {
+		try {
+			getElement(locator).click();
+		} catch (Exception e) {
+			System.out.println("some exception got occurred while clicking on the webelement : " + locator);
+			System.out.println(e.getMessage());
+		}
 	}
 
-	public void click(By locator) {
-		driver.findElement(locator).click();
+	public void sendKeys(By locator, String... value) {
+		try {
+			getElement(locator).clear();
+			getElement(locator).sendKeys(value);
+		} catch (Exception e) {
+			System.out.println("some exception got occurred while sending the text to the webelement : " + locator);
+			System.out.println(e.getMessage());
+
+		}
 	}
 
 	public String getText(By locator) {
-		return driver.findElement(locator).getText();
+		String text = null;
+		try {
+			text = getElement(locator).getText();
+		} catch (Exception e) {
+			System.out.println("some exception got occurred while getting the test from webelement : " + locator);
+			System.out.println(e.getMessage());
+		}
+		return text;
 	}
 
 	public void ActionsClick(By locator) {
@@ -87,22 +116,12 @@ public class ElementUtil extends BasePage {
 		}
 	}
 
-	public void ActionsSendKeys(By locator, String... value) {
+	public void actionsSendKeys(By locator, String... value) {
 		try {
 			Actions action = new Actions(driver);
 			action.sendKeys(getElement(locator), value).build().perform();
 		} catch (Exception e) {
 			System.out.println("some exception got occurred while passing the values to the webelement : " + locator);
-			System.out.println(e.getMessage());
-		}
-	}
-
-	public void ActionsMoveToElement(By locator) {
-		try {
-			Actions action = new Actions(driver);
-			action.moveToElement(getElement(locator)).build().perform();
-		} catch (Exception e) {
-			System.out.println("some exception got occurred while moving on the webelement : " + locator);
 			System.out.println(e.getMessage());
 		}
 	}
@@ -118,6 +137,27 @@ public class ElementUtil extends BasePage {
 			System.out.println(e.getMessage());
 		}
 		return flag;
+	}
+
+	public String getTitle() {
+		String title = null;
+		try {
+			title = driver.getTitle();
+		} catch (Exception e) {
+			System.out.println("some exception got occurred while getting the title of the page");
+			System.out.println(e.getMessage());
+		}
+		return title;
+	}
+
+	public void actionsMoveToElement(By locator) {
+		try {
+			Actions action = new Actions(driver);
+			action.moveToElement(getElement(locator)).build().perform();
+		} catch (Exception e) {
+			System.out.println("some exception got occurred while moving on the webelement : " + locator);
+			System.out.println(e.getMessage());
+		}
 	}
 
 	public void waitForPageTitle(String title) {

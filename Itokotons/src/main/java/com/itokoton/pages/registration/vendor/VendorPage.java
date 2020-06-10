@@ -18,21 +18,15 @@ public class VendorPage extends BasePage {
 	}
 
 //	Locators
-	@FindBy(className = "logoimage")
-	static By ITOKOTON_DASHBOARD;
-	@FindBy(linkText = "Registration & Screening")
-	static By REGISTRATION_MENU;
-	@FindBy(linkText = "Vendor Registration")
-	static By VENDOR_REGISTRATION_MENU;
-	@FindBy(xpath = "//button[@title='Create Vendor']")
-	static By VENDOR_CREATE_BUTTON;
+	By ITOKOTON_DASHBOARD = By.className("logoimage");
+	By REGISTRATION_MENU = By.linkText("Registration & Screening");
+	By VENDOR_REGISTRATION_MENU = By.linkText("Vendor Registration");
+	By VENDOR_CREATE_BUTTON = By.xpath("//button[@title='Create Vendor']");
 
 	public void NavigatetoVendorPage() {
 		eu.visibilityOfElementWait(ITOKOTON_DASHBOARD);
 		eu.visibilityOfElementWait(REGISTRATION_MENU);
-		eu.ActionsMoveToElement(REGISTRATION_MENU);
-		String REGISTRATION_MENU_TOOLTIP = eu.getText(REGISTRATION_MENU);
-		System.out.println("The tooltip of the master tab is :   " + REGISTRATION_MENU_TOOLTIP);
+		eu.actionsMoveToElement(REGISTRATION_MENU);
 		eu.inVisibilityOfSpinnerIcon();
 		eu.click(REGISTRATION_MENU);
 		eu.visibilityOfElementWait(VENDOR_REGISTRATION_MENU);
