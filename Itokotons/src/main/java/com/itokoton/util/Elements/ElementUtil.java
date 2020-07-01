@@ -1,5 +1,9 @@
 package com.itokoton.util.Elements;
 
+import java.awt.Robot;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
@@ -159,7 +163,7 @@ public class ElementUtil extends BasePage {
 			System.out.println(e.getMessage());
 		}
 	}
-
+	
 	public void waitForPageTitle(String title) {
 		wait.until(ExpectedConditions.titleContains(title));
 	}

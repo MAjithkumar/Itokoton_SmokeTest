@@ -60,12 +60,13 @@ public class LoginPage extends BasePage {
 
 	public void Logout() throws InterruptedException {
 		eu.visibilityOfElementWait(LOGOUT_DOWNARROW_ICON);
+		eu.SLEEP_2S();
 		eu.click(LOGOUT_DOWNARROW_ICON);
-		eu.inVisibilityOfSpinnerIcon();
 		eu.SLEEP_2S();
 		eu.visibilityOfElementWait(LOGOUT_SIGNIN_DIFF_USER);
 		eu.click(LOGOUT_SIGNIN_DIFF_USER);
-		eu.inVisibilityOfSpinnerIcon();
+		eu.SLEEP_2S();
+
 		if (relogin) {
 			try {
 				Login(currentUName, currentPassword);
@@ -87,7 +88,7 @@ public class LoginPage extends BasePage {
 	}
 
 	public void VerifyLoginUser() throws InterruptedException {
-		eu.SLEEP_6S();
+		eu.SLEEP_4S();
 		String user = eu.getText(LOGGEDIN_USER);
 		if (!user.equals(currentUName)) {
 			try {
@@ -99,7 +100,7 @@ public class LoginPage extends BasePage {
 		} else {
 			relogin = false;
 		}
-		eu.SLEEP_6S();
+		eu.SLEEP_3S();
 	}
 
 	public boolean verifyHomePageHeader() {

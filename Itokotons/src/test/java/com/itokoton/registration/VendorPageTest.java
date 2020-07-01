@@ -58,6 +58,6 @@ public class VendorPageTest {
 		String headerValue = loginPage.getHomePageHeader();
 		System.out.println("home page header is: " + headerValue);
 		Assert.assertEquals(headerValue, Constants.HOME_PAGE_TITLE, "home page header mismatched...");
-//		vendorPage.NavigatetoVendorPage();
+		vendorPage.NavigatetoVendorPage();
 	}
 }

@@ -175,7 +175,7 @@ public class Xls_Reader {
 	}
 
 	// returns true if data is set successfully else false
-	public boolean setCellData(String sheetName, String colName, int rowNum, String data) {
+	public static boolean setCellData(String sheetName, String colName, int rowNum, String data) {
 		try {
 			fis = new FileInputStream(path);
 			workbook = new XSSFWorkbook(fis);
