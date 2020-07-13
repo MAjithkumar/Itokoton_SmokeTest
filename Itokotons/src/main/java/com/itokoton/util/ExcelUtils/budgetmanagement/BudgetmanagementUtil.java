@@ -8,17 +8,16 @@ import com.itokoton.util.ExcelUtils.Xls_Reader;
 
 public class BudgetmanagementUtil {
 	public static Xls_Reader reader;
-//	public static ArrayList<BudgetManagementDTO> budgetcreationdata = new ArrayList<BudgetManagementDTO>();
 
 	public static ArrayList<BudgetManagementDTO> getbudgetcreationDetailsFromExcel(String dataFilePath)
 			throws IOException {
-		
+
 		ArrayList<BudgetManagementDTO> budgetcreationDatas = new ArrayList<BudgetManagementDTO>();
 		try {
 			reader = new Xls_Reader(dataFilePath, "BudgetCreationInputData");
 		} catch (Exception e) {
 			e.printStackTrace();
-		
+
 		}
 		for (int rowNum = 2; rowNum <= reader.getRowCount("BudgetCreationInputData"); rowNum++) {
 			BudgetManagementDTO budgetcreationDetail = new BudgetManagementDTO();
@@ -47,12 +46,11 @@ public class BudgetmanagementUtil {
 			budgetcreationDetail.setApproverRemarks(ApproverRemarks);
 			budgetcreationDetail.setBudgetReqNumber(BudgetReqNumber);
 			budgetcreationDatas.add(budgetcreationDetail);
-			
 
 		}
-		
+
 		return budgetcreationDatas;
-		
+
 	}
 
 }

@@ -24,8 +24,6 @@ public class BasePage {
 	WebDriver driver;
 	Properties prop;
 	ElementUtil eu;
-	static String currentUName, currentPassword;
-	static boolean relogin = false;
 	public static ThreadLocal<WebDriver> tldriver = new ThreadLocal<WebDriver>();
 
 	public static synchronized WebDriver getDriver() {

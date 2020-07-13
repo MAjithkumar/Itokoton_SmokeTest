@@ -41,8 +41,8 @@ public class ExtentReportListener extends BasePage implements ITestListener {
 			}
 		}
 		ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(OUTPUT_FOLDER + FILE_NAME);
-		htmlReporter.config().setDocumentTitle("Automation Test Results");
-		htmlReporter.config().setReportName("Automation Test Results");
+		htmlReporter.config().setDocumentTitle("Itokoton Regression Test Results");
+		htmlReporter.config().setReportName("Itokoton Regression Test Results");
 		htmlReporter.config().setTestViewChartLocation(ChartLocation.TOP);
 		htmlReporter.config().setTheme(Theme.STANDARD);
 
@@ -93,8 +93,8 @@ public class ExtentReportListener extends BasePage implements ITestListener {
 	public synchronized void onTestFailure(ITestResult result) {
 		System.out.println((result.getMethod().getMethodName() + " failed!"));
 		try {
-			test.get().fail(result.getThrowable(),
-					MediaEntityBuilder.createScreenCaptureFromPath(getScreenshot()).build());
+			test.get().fail(result.getThrowable(), MediaEntityBuilder
+					.createScreenCaptureFromPath(result.getMethod().getMethodName() + "_" + getScreenshot()).build());
 		} catch (IOException e) {
 			System.err
 					.println("Exception thrown while updating test fail status " + Arrays.toString(e.getStackTrace()));

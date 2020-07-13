@@ -71,38 +71,34 @@ public class BudgetFlows {
 
 	public void AddingReviewer(String budgetDataFilePath, BudgetManagementDTO budgetManagementdto)
 			throws InterruptedException, AWTException {
-		try {
-			eu.SLEEP_8S();
-			eu.visibilityOfElementWait(ADD_REVIEWER_BUTTON);
-			eu.click(ADD_REVIEWER_BUTTON);
-			eu.visibilityOfElementWait(SELECT_REVIEWER);
-			WebElement select1 = driver.findElement(SELECT_REVIEWER);
-			select1.click();
-			eu.SLEEP_2S();
-			String reviewerName = budgetManagementdto.ReviewerName;
-			Select sel = new Select(select1);
-			sel.selectByVisibleText(reviewerName);
-			eu.SLEEP_2S();
-			eu.visibilityOfElementWait(ADD_BUTTON);
-			eu.click(ADD_BUTTON);
-			eu.visibilityOfElementWait(CONFIRM_BUTTON);
-			eu.click(CONFIRM_BUTTON);
-			eu.visibilityOfElementWait(REVIEW_BUTTON);
-			eu.click(REVIEW_BUTTON);
-			eu.inVisibilityOfSpinnerIcon();
-			eu.SLEEP_2S();
-			eu.visibilityOfElementWait(GET_REQUEST_NUMBER);
-			String budcode = eu.getText(GET_REQUEST_NUMBER);
-			String budgetReqNumber = budcode.split(": ")[1];
-			reqNum = budgetReqNumber;
-			Xls_Reader.setCellData("BudgetCreationInputData", "BudgetReqNumber", 2, budgetReqNumber);
-			eu.SLEEP_5S();
-			eu.visibilityOfElementWait(OK_BUTTON);
-			eu.click(OK_BUTTON);
-			eu.inVisibilityOfSpinnerIcon();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		eu.SLEEP_8S();
+		eu.visibilityOfElementWait(ADD_REVIEWER_BUTTON);
+		eu.click(ADD_REVIEWER_BUTTON);
+		eu.visibilityOfElementWait(SELECT_REVIEWER);
+		WebElement select1 = driver.findElement(SELECT_REVIEWER);
+		select1.click();
+		eu.SLEEP_2S();
+		String reviewerName = budgetManagementdto.ReviewerName;
+		Select sel = new Select(select1);
+		sel.selectByVisibleText(reviewerName);
+		eu.SLEEP_2S();
+		eu.visibilityOfElementWait(ADD_BUTTON);
+		eu.click(ADD_BUTTON);
+		eu.visibilityOfElementWait(CONFIRM_BUTTON);
+		eu.click(CONFIRM_BUTTON);
+		eu.visibilityOfElementWait(REVIEW_BUTTON);
+		eu.click(REVIEW_BUTTON);
+		eu.inVisibilityOfSpinnerIcon();
+		eu.SLEEP_2S();
+		eu.visibilityOfElementWait(GET_REQUEST_NUMBER);
+		String budcode = eu.getText(GET_REQUEST_NUMBER);
+		String budgetReqNumber = budcode.split(": ")[1];
+		reqNum = budgetReqNumber;
+		Xls_Reader.setCellData("BudgetCreationInputData", "BudgetReqNumber", 2, budgetReqNumber);
+		eu.SLEEP_5S();
+		eu.visibilityOfElementWait(OK_BUTTON);
+		eu.click(OK_BUTTON);
+		eu.inVisibilityOfSpinnerIcon();
 	}
 
 	public void ReviewerFlow(BudgetManagementDTO budgetManagementdto) throws AWTException, InterruptedException {
@@ -136,7 +132,7 @@ public class BudgetFlows {
 	public void AddApprover(BudgetManagementDTO budgetManagementdto) throws InterruptedException {
 
 		eu.inVisibilityOfSpinnerIcon();
-		if (!!driver.findElement(BUDGET_MYVIEW).isDisplayed() || !!driver.findElement(BUDGET_MYVIEW).isEnabled()) {
+		if (!driver.findElement(BUDGET_MYVIEW).isDisplayed() || !driver.findElement(BUDGET_MYVIEW).isEnabled()) {
 			eu.visibilityOfElementWait(BUDGET_MENU);
 			eu.click(BUDGET_MENU);
 			eu.visibilityOfElementWait(BUDGET_MANAGEMENT_DASHBOARD);
@@ -175,11 +171,9 @@ public class BudgetFlows {
 		eu.visibilityOfElementWait(SUBMIT_BUTTON);
 		eu.click(SUBMIT_BUTTON);
 		eu.inVisibilityOfSpinnerIcon();
-
 	}
 
-	public void Approver(BudgetManagementDTO budgetManagementdto) throws InterruptedException {
-
+	public void ApproverFlows(BudgetManagementDTO budgetManagementdto) throws InterruptedException {
 		eu.inVisibilityOfSpinnerIcon();
 		eu.visibilityOfElementWait(BUDGET_MENU);
 		eu.click(BUDGET_MENU);
@@ -207,7 +201,5 @@ public class BudgetFlows {
 		eu.visibilityOfElementWait(APPROVE_BUTTON);
 		eu.click(APPROVE_BUTTON);
 		eu.inVisibilityOfSpinnerIcon();
-
 	}
-
 }

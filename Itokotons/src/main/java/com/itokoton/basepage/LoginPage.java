@@ -28,7 +28,7 @@ public class LoginPage extends BasePage {
 	By LOGOUT_DOWNARROW_ICON = By.xpath("//i[@class='fa fa-caret-down']");
 	By LOGOUT_SIGNIN_DIFF_USER = By.xpath("//a[starts-with(.,'Sign-in As Different User')]");
 	By LOGGEDIN_USER = By.xpath("//table[@id='user-profile-dd']/descendant::tr/descendant::td/descendant::label");
-	By header = By.cssSelector("h1.private-page__title");
+	By PAGE_TITLE_HEADER = By.cssSelector("h1.private-page__title");
 	By HOME_PAGE_MENU = By.linkText("My View");
 
 	public void Login(String userName, String userPassword) throws IOException, InterruptedException, AWTException {
@@ -62,10 +62,10 @@ public class LoginPage extends BasePage {
 		eu.visibilityOfElementWait(LOGOUT_DOWNARROW_ICON);
 		eu.SLEEP_2S();
 		eu.click(LOGOUT_DOWNARROW_ICON);
-		eu.SLEEP_2S();
+		eu.SLEEP_1S();
 		eu.visibilityOfElementWait(LOGOUT_SIGNIN_DIFF_USER);
 		eu.click(LOGOUT_SIGNIN_DIFF_USER);
-		eu.SLEEP_2S();
+		eu.SLEEP_1S();
 
 		if (relogin) {
 			try {
@@ -100,7 +100,7 @@ public class LoginPage extends BasePage {
 		} else {
 			relogin = false;
 		}
-		eu.SLEEP_3S();
+		eu.SLEEP_2S();
 	}
 
 	public boolean verifyHomePageHeader() {

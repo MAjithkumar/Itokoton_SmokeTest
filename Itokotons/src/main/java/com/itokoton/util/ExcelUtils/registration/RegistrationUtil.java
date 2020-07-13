@@ -12,7 +12,6 @@ public class RegistrationUtil {
 
 	public static ArrayList<RegistrationDTO> getVendorDetailsFromExcel(String dataFilePath) throws IOException {
 		ArrayList<RegistrationDTO> vendorData = new ArrayList<RegistrationDTO>();
-		ArrayList<Object[]> vendorDatas = new ArrayList<Object[]>();
 		try {
 			reader = new Xls_Reader(dataFilePath, "VendorInputData");
 		} catch (Exception e) {
